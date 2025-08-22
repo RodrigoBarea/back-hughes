@@ -24,7 +24,9 @@ export default [
       formidable: { maxFileSize: 64 * 1024 * 1024 }, // 64 MB
     },
   },
+  'strapi::errors',
   'strapi::security',
+  'strapi::cors',
   'strapi::poweredBy',
   'strapi::logger',
   'strapi::query',
