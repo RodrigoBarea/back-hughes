@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "art_timetable_entries",
+  "info": {
+    "singularName": "art-timetable-entry",
+    "pluralName": "art-timetable-entries",
+    "displayName": "Art Timetable Entry"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "day": {
+      "type": "enumeration",
+      "enum": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ]
+    },
+    "period": {
+      "type": "integer"
+    },
+    "startTime": {
+      "type": "time"
+    },
+    "endTime": {
+      "type": "time"
+    },
+    "art_groups": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::art-group.art-group",
+      "inversedBy": "art_timetable_entries"
+    },
+    "subject": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subject.subject",
+      "inversedBy": "art_timetable_entries"
+    },
+    "teacher": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::teacher.teacher",
+      "inversedBy": "art_timetable_entries"
+    }
+  }
+}

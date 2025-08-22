@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students",
+  "info": {
+    "singularName": "student",
+    "pluralName": "students",
+    "displayName": "Student"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email"
+    },
+    "password": {
+      "type": "password",
+      "private": true
+    },
+    "section": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::section.section",
+      "inversedBy": "students"
+    },
+    "parents": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::parent.parent",
+      "mappedBy": "students"
+    },
+    "grade": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::grade.grade"
+    },
+    "art_group": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::art-group.art-group",
+      "inversedBy": "students"
+    },
+    "leave_requests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::leave-request.leave-request",
+      "mappedBy": "student"
+    }
+  }
+}

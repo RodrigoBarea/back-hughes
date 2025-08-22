@@ -1,0 +1,7 @@
+/**
+ * leave-request router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::leave-request.leave-request');

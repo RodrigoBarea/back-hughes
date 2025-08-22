@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "admissions_submissions",
+  "info": {
+    "singularName": "admissions-submission",
+    "pluralName": "admissions-submissions",
+    "displayName": "Admissions Submission"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "payload": {
+      "type": "json"
+    }
+  }
+}

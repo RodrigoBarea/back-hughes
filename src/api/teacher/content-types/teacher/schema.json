@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teachers",
+  "info": {
+    "singularName": "teacher",
+    "pluralName": "teachers",
+    "displayName": "Teacher"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "foto": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "staff": {
+      "type": "enumeration",
+      "enum": [
+        "Academic",
+        "Art",
+        "Academic Coordination"
+      ]
+    },
+    "subjects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::subject.subject",
+      "mappedBy": "teachers"
+    },
+    "timetableEntries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::timetable-entry.timetable-entry",
+      "mappedBy": "teacher"
+    },
+    "art_timetable_entries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::art-timetable-entry.art-timetable-entry",
+      "mappedBy": "teacher"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subjects",
+  "info": {
+    "singularName": "subject",
+    "pluralName": "subjects",
+    "displayName": "Subject"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "shortName": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string",
+      "default": "#3b82f6"
+    },
+    "grades": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::grade.grade",
+      "inversedBy": "subjects"
+    },
+    "teachers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::teacher.teacher",
+      "inversedBy": "subjects"
+    },
+    "timetableEntries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::timetable-entry.timetable-entry",
+      "mappedBy": "subject"
+    },
+    "art_timetable_entries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::art-timetable-entry.art-timetable-entry",
+      "mappedBy": "subject"
+    },
+    "textbooks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::textbook.textbook",
+      "mappedBy": "subject"
+    }
+  }
+}

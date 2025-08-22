@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sections",
+  "info": {
+    "singularName": "section",
+    "pluralName": "sections",
+    "displayName": "Section"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "room": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::grade.grade",
+      "inversedBy": "sections"
+    },
+    "students": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student.student",
+      "mappedBy": "section"
+    },
+    "timetableEntries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::timetable-entry.timetable-entry",
+      "mappedBy": "sections"
+    },
+    "textbooks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::textbook.textbook",
+      "mappedBy": "section"
+    }
+  }
+}

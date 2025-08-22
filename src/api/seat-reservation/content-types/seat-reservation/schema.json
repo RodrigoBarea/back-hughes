@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "seat_reservations",
+  "info": {
+    "singularName": "seat-reservation",
+    "pluralName": "seat-reservations",
+    "displayName": "Seat Reservation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "confirm": {
+      "type": "enumeration",
+      "enum": [
+        "Si",
+        "No"
+      ]
+    },
+    "schoolYear": {
+      "type": "string",
+      "default": "2026"
+    },
+    "sectionName": {
+      "type": "string"
+    },
+    "parent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::parent.parent",
+      "inversedBy": "seat_reservations"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::student.student"
+    }
+  }
+}
