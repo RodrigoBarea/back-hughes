@@ -1,12 +1,31 @@
+// config/middlewares.ts
 export default [
   'strapi::errors',
+
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          // permite llamadas y websockets
+          'connect-src': ["'self'", 'https:', 'http:', 'ws:', 'wss:'],
+          // permite cargar imágenes y media desde https (Cloudinary, Render, etc.)
+          'img-src': ["'self'", 'data:', 'blob:', 'https:', 'http:'],
+          'media-src': ["'self'", 'data:', 'blob:', 'https:', 'http:'],
+          'frame-src': ["'self'", 'https:', 'http:'],
+        },
+      },
+    },
+  },
+
   {
     name: 'strapi::cors',
     config: {
-      enabled: true,
+      // AGREGA AQUÍ tus orígenes permitidos (frontend en producción y local)
       origin: [
-        'http://localhost:3000',       // tu frontend local
-        'https://frontend-hughes.vercel.app/',      // tu dominio en prod
+        'https://frontend-hughes.vercel.app',
+        'http://localhost:3000',
       ],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       headers: [
@@ -14,18 +33,16 @@ export default [
         'Authorization',
         'Origin',
         'Accept',
+        'Keep-Alive',
+        'User-Agent',
+        'Cache-Control',
+        'X-Requested-With',
       ],
+      credentials: true,
       keepHeadersOnError: true,
-      credentials: false, // pon true SOLO si usas cookies/sesión entre front y back
-      
-       formLimit: '64mb',
-      jsonLimit: '64mb',
-      textLimit: '64mb',
-      formidable: { maxFileSize: 64 * 1024 * 1024 }, // 64 MB
     },
   },
-  'strapi::security',
-  'strapi::poweredBy',
+
   'strapi::logger',
   'strapi::query',
   'strapi::body',
