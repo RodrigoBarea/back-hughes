@@ -1,15 +1,19 @@
-module.exports = ({ env }) => ({
+export default ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
-  app: {
-    keys: env.array('APP_KEYS'),
-  },
-  url: env('PUBLIC_URL', 'https://back-hughes-1.onrender.com/'), // URL de tu app en Render
+
+  app: { keys: env.array('APP_KEYS') },
+
+  // IMPORTANTE: NO uses slash final aquí
+  url: env('PUBLIC_URL', 'https://back-hughes-1.onrender.com'),
+
   proxy: true,
-  cors: {
-    origin: [
-      'https://frontend-hughes.vercel.app/', // Tu dominio de Vercel
-      'http://localhost:3000', // Para desarrollo local
-    ],
+
+  // Habilita Data Transfer
+  transfer: {
+    enabled: env.bool('STRAPI_TRANSFER_ENABLED', true),
+    token: {
+      salt: env('TRANSFER_TOKEN_SALT'),
+    },
   },
 });
